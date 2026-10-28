@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Build Your CV – HideOut Style</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fffbf2;--card:#fff;--ink:#111;--mute:#5d5d6a;--line:#e7e2d6;--pink:#ff2e93;--yellow:#ffd600;--cyan:#00c8ff;--purple:#7b2fff;--green:#1fd37a;--sec:var(--pink);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0c12;--card:#171722;--ink:#f6f6fb;--mute:#a6a6b8;--line:#2b2b3b}}
+:root[data-theme="dark"]{--bg:#0c0c12;--card:#171722;--ink:#f6f6fb;--mute:#a6a6b8;--line:#2b2b3b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Poppins',system-ui,sans-serif;overflow-x:hidden}
+.blob{position:fixed;border-radius:50%;filter:blur(40px);opacity:.35;z-index:0;animation:float 14s ease-in-out infinite}
+.b1{width:340px;height:340px;background:var(--pink);top:-90px;left:-80px}
+.b2{width:300px;height:300px;background:var(--cyan);bottom:-80px;right:-60px;animation-delay:-5s}
+.b3{width:220px;height:220px;background:var(--yellow);top:45%;right:-70px;animation-delay:-9s}
+@keyframes float{50%{transform:translate(30px,-40px) scale(1.12)}}
+.app{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:18px 16px 40px}
+header.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.logo{font-family:'Archivo Black',Impact,sans-serif;font-size:20px;letter-spacing:.5px;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:6px 12px;border-radius:10px;transform:rotate(-2deg)}
+.logo span{color:var(--yellow)}
+.count{font-weight:700;font-size:13px;color:var(--mute)}
+.bar{height:12px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--yellow),var(--cyan),var(--green));transition:width .5s cubic-bezier(.3,1.4,.5,1)}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:26px;padding:22px 20px;box-shadow:8px 8px 0 var(--sec);animation:pop .45s cubic-bezier(.3,1.5,.5,1)}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.96)}}
+.pill{display:inline-block;background:var(--sec);color:#111;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:99px;margin-bottom:12px}
+h1,h2{font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;line-height:1.1;margin:0 0 16px}
+h1{font-size:clamp(30px,8vw,44px)}h2{font-size:clamp(22px,5.6vw,30px)}
+.coach{display:flex;gap:10px;align-items:flex-start;background:color-mix(in srgb,var(--sec) 16%,var(--card));border-radius:18px;padding:12px 14px;margin-bottom:16px;font-size:14px}
+.coach b.em{font-size:28px;line-height:1;animation:wig 2.4s ease-in-out infinite;display:inline-block}
+@keyframes wig{0%,100%{transform:rotate(0)}10%{transform:rotate(-14deg)}20%{transform:rotate(12deg)}30%{transform:rotate(0)}}
+label{display:block;font-weight:600;font-size:13px;margin:10px 0 4px;color:var(--mute)}
+input,textarea,select{width:100%;font:inherit;font-size:17px;padding:13px 14px;border:3px solid var(--line);border-radius:16px;background:var(--bg);color:var(--ink);outline:none;transition:.2s}
+input:focus,textarea:focus,select:focus{border-color:var(--sec);transform:scale(1.015)}
+textarea{min-height:110px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hint{min-height:22px;font-size:13px;font-weight:600;margin-top:8px;color:var(--mute)}
+.err{color:var(--pink)}
+.btns{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+button{font:inherit;font-weight:700;cursor:pointer;border:3px solid var(--ink);border-radius:16px;padding:12px 20px;font-size:16px;color:#111;transition:transform .15s,box-shadow .15s}
+.go{background:var(--yellow);box-shadow:4px 4px 0 var(--ink);flex:1}
+.go:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.go:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.yn{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.yn button{font-size:22px;padding:22px 10px;box-shadow:4px 4px 0 var(--ink)}
+.yn .y{background:var(--green)}.yn .n{background:var(--pink)}
+.yn button:hover{transform:translateY(-4px) rotate(-1.5deg)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:var(--card);color:var(--ink);border-color:var(--line);font-size:15px;animation:pop .5s both}
+.chip:hover{transform:scale(1.08) rotate(-2deg)}
+.chip.on{background:var(--cyan);color:#111;border-color:var(--ink);transform:scale(1.06);box-shadow:3px 3px 0 var(--ink)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-weight:700;font-size:14px;z-index:20;transition:transform .4s cubic-bezier(.3,1.6,.5,1);max-width:90%;text-align:center}
+.toast.show{transform:translate(-50%,0)}
+.conf{position:fixed;top:-20px;width:10px;height:14px;z-index:30;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+/* CV */
+#cv,.cv{background:#fff;color:#111;border:3px solid #111;border-radius:20px;overflow:hidden;margin-top:18px;box-shadow:8px 8px 0 var(--pink);animation:pop .5s}
+.cvh{background:#111;color:#fff;padding:24px 22px;position:relative;border-bottom:8px solid var(--yellow)}
+.cvh h1{margin:0 0 8px;color:#fff;font-size:clamp(26px,7vw,38px)}
+.cvh h1 em{font-style:normal;color:var(--yellow)}
+.cvh p{margin:2px 0;font-size:14px;color:#ddd}
+.cvb{padding:6px 22px 22px}
+.cvb h3{font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;font-size:15px;letter-spacing:1px;margin:20px 0 8px;padding-bottom:4px;border-bottom:4px solid var(--c,var(--pink));display:inline-block}
+.cvb p,.cvb li{font-size:14px;line-height:1.55;margin:4px 0}
+.cvb ul{margin:4px 0;padding-left:20px}
+.item{margin-bottom:10px}.item b{display:block}.item small{color:#666;font-weight:600}
+.sk{display:flex;flex-wrap:wrap;gap:8px}
+.sk span{background:var(--c);padding:5px 13px;border-radius:99px;font-weight:700;font-size:13px;border:2px solid #111}
+.hide{display:none}
+.brand{display:flex;align-items:center;gap:10px}
+.lgw{background:#fff;border:3px solid #111;border-radius:12px;padding:5px 12px;display:inline-flex;transform:rotate(-2deg)}
+.lg{height:34px;width:auto;display:block}
+.wm{font-family:'Archivo Black',Impact,sans-serif;color:#111;text-transform:uppercase;font-size:18px}.wm b{color:var(--pink)}
+.sub{font-family:'Archivo Black',Impact,sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:1px}
+.app.wide{max-width:1120px}
+.ed{display:grid;gap:14px}
+.tabs{grid-column:1/-1;display:flex;gap:8px}
+.tabs button{flex:1;background:var(--card);color:var(--ink);border-color:var(--line);padding:10px;font-size:14px}
+.tabs button.on{background:var(--yellow);color:#111;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.ed .pe,.ed .px,.ed .pv{display:none}
+.ed[data-t=edit] .pe,.ed[data-t=ex] .px,.ed[data-t=prev] .pv{display:block}
+@media(min-width:900px){.ed{grid-template-columns:1fr 1fr;align-items:start}.ed .pv{display:block;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;padding:0 4px 6px 0}.ed[data-t=prev] .pe{display:block}.tabs button[data-b=prev]{display:none}}
+.fs{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:5px 5px 0 var(--c,var(--pink))}
+.fs h4,.exw h4{font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;margin:0 0 6px;font-size:17px}
+.ft{font-size:13px;color:var(--mute);margin:0 0 6px}
+.fs input,.fs textarea{font-size:15px;padding:10px 12px}.fs textarea{min-height:70px}
+.li{border:2px dashed var(--line);border-radius:14px;padding:4px 12px 12px;margin:10px 0;position:relative}
+.x{position:absolute;top:6px;right:6px;padding:2px 9px;font-size:13px;background:var(--pink);border-width:2px;border-radius:10px}
+.add{margin-top:10px;font-size:14px;padding:9px 14px}
+.sw{display:flex;gap:10px}.sw button{width:40px;height:40px;border-radius:50%;padding:0}.sw button.on{transform:scale(1.2);box-shadow:3px 3px 0 var(--ink)}
+.exw{margin-bottom:22px}.exc .cv{margin-top:6px;box-shadow:6px 6px 0 var(--pink)}.exw .coach ul{margin:4px 0 0;padding-left:18px}
+@media print{.tabs,.ed .pe,.ed .px{display:none!important}.ed{display:block}.ed .pv{display:block!important;position:static;max-height:none;overflow:visible}}
+@media print{body{background:#fff}.blob,header.top,.bar,#panel,.toast,.conf,.noprint{display:none!important}.app{padding:0;max-width:none}#cv{border:0;box-shadow:none;margin:0;border-radius:0}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="app">
+  <header class="top"><div class="brand"><span class="lgw"><img class="lg" src="https://hideoutyouthzone.org/wp-content/uploads/2023/01/Hideout_OnSide.png" alt="HideOut Youth Zone" onerror="this.parentNode.innerHTML='<span class=wm>Hide<b>Out</b></span>'"></span><span class="sub">CV Maker</span></div><div class="count" id="count"></div></header>
+  <div class="bar"><i id="bar"></i></div>
+  <main id="panel"></main>
+  <div id="out"></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+var d={sk:[]},cur="start",$=function(s){return document.querySelector(s)};
+var years=[];for(var y=new Date().getFullYear()+1;y>=2005;y--)years.push(y);
+var SEC={a:"var(--pink)",e:"var(--cyan)",w:"var(--yellow)",s:"var(--green)"};
+var praise=["Nice one! 🔥","Smashing it! 💪","Looking good! ✨","You’re flying! 🚀","Boom! Done. 🎯","Love it! 🙌"];
+var SKILLS=[["Problem Solving","🧩"],["Communication","💬"],["Teamwork","🤝"],["Resilient","💪"],["Creative","🎨"],["Time Management","⏰"],["Good Listener","👂"],["Good Leader","👑"],["Responsible","✅"]];
+var skTips={"Problem Solving":"Fixing things, figuring out games, helping friends sort out issues.","Communication":"Explaining things clearly, presenting, chatting to new people.","Teamwork":"Sports teams, group projects, helping at home.","Resilient":"Bouncing back when things get tough.","Creative":"Art, music, ideas, making things.","Time Management":"Getting to school on time, juggling homework and hobbies.","Good Listener":"Friends come to you when they need to talk.","Good Leader":"Captain, group organiser, someone others follow.","Responsible":"Looking after siblings, pets, jobs at home."};
+function yrs(a,b){return[{k:a,l:"Started",yr:1},{k:b,l:"Finished (or expected)",yr:1}]}
+var S=[
+{id:"start",welcome:1},
+{id:"fn",s:"a",pill:"About you",q:"First things first – what’s your first name?",tip:"Use the name you’d like employers to call you.",f:[{k:"fn",l:"First name",ph:"e.g. Jamie"}],req:1},
+{id:"ln",s:"a",pill:"About you",q:"Nice to meet you, {fn}! And your last name?",tip:"Your full name goes at the top of your CV in big letters.",f:[{k:"ln",l:"Last name",ph:"e.g. Smith"}],req:1},
+{id:"ph",s:"a",pill:"Contact",q:"What’s the best number to reach you on?",tip:"Pick a number you actually answer – and make sure your voicemail sounds polite!",f:[{k:"ph",l:"Phone number",ph:"07123 456789",t:"tel"}],live:"ph"},
+{id:"em",s:"a",pill:"Contact",q:"What’s your email address?",tip:"Keep it simple and sensible. Names work best – silly nicknames don’t make a good first impression.",f:[{k:"em",l:"Email",ph:"jamie.smith@email.com",t:"email"}],live:"em"},
+{id:"ad",s:"a",pill:"Contact",q:"Where do you live?",tip:"Safety first: your town or area plus postcode is plenty. You don’t need your full street.",f:[{k:"ad",l:"Town / area and postcode",ph:"e.g. Gorton, Manchester M18"}]},
+{id:"pa",s:"a",pill:"About me • 1 of 3",q:"What are you passionate about?",tip:"Short and snappy works – list a few things, split by commas.",f:[{k:"pa",l:"Your passions",ph:"e.g. music, football, art",ta:1}],live:"len"},
+{id:"fr",s:"a",pill:"About me • 2 of 3",q:"How would your friends describe you?",tip:"Think of words they’d use. Be proud – this is your moment to brag a little!",f:[{k:"fr",l:"Words your friends use",ph:"e.g. funny, loyal, kind",ta:1}],live:"len"},
+{id:"li",s:"a",pill:"About me • 3 of 3",q:"What do you like to do in your spare time?",tip:"Hobbies show your personality. Clubs, sport, gaming, cooking – all count.",f:[{k:"li",l:"Things you love doing",ph:"e.g. gaming, baking, hanging out with friends",ta:1}],live:"len"},
+{id:"p1",s:"e",pill:"Education",q:"Where did you go to primary school?",tip:"Just the school name is fine. Skip it if you’d rather not add it.",f:[{k:"p1",l:"Primary school",ph:"e.g. St Mary’s Primary"}]},
+{id:"p1y",s:"e",pill:"Education",q:"When were you there?",tip:"Roughly is fine – approximate years are OK.",f:yrs("p1s","p1e"),if:function(){return d.p1}},
+{id:"h1",s:"e",pill:"Education",q:"Where did you go to high school?",tip:"If you’re still there, that’s great – we’ll show it as ‘present’.",f:[{k:"h1",l:"High school",ph:"e.g. Connell Sixth Form"}]},
+{id:"h1y",s:"e",pill:"Education",q:"When did you start and finish?",tip:"Leave the finish year blank if you’re still studying.",f:yrs("h1s","h1e"),if:function(){return d.h1}},
+{id:"c1",s:"e",pill:"Education",q:"Where did you go to college?",tip:"Haven’t started college yet? No stress – just skip this one.",f:[{k:"c1",l:"College",ph:"e.g. Manchester College"}]},
+{id:"c1y",s:"e",pill:"Education",q:"When did you start and finish?",tip:"Leave the finish blank if you’re still there.",f:yrs("c1s","c1e"),if:function(){return d.c1}},
+{id:"hw",s:"w",pill:"Work experience",q:"Have you ever worked – for a family member, at school, or on a placement?",tip:"Helping in a family shop, a paper round, work experience week – they all count!",yn:"hw",yes:"Brilliant! Employers love seeing this.",no:"No worries – everyone starts somewhere! Next up: volunteering."},
+{id:"w1",s:"w",pill:"Work experience",q:"Where did you work?",tip:"Business or person’s name, e.g. “My uncle’s café”.",f:[{k:"w1",l:"Where",ph:"e.g. Uncle Sam’s Café"}],req:1,if:function(){return d.hw=="yes"}},
+{id:"w1h",s:"w",pill:"Work experience",q:"How long were you there?",tip:"A week, 3 months, every Saturday for a year – any answer is fine.",f:[{k:"w1h",l:"How long",ph:"e.g. 2 weeks"}],if:function(){return d.hw=="yes"}},
+{id:"w1d",s:"w",pill:"Work experience",q:"What did you do there?",tip:"Start each thing with an action word like served, helped, organised or cleaned. Separate with commas or new lines.",f:[{k:"w1d",l:"Your tasks",ph:"e.g. served customers, cleaned tables, helped with stock",ta:1}],live:"duty",if:function(){return d.hw=="yes"}},
+{id:"hv",s:"w",pill:"Volunteering",q:"Have you done any volunteering?",tip:"Charity shops, youth clubs, school events, helping neighbours – it all shows you care.",yn:"hv",yes:"Amazing! Volunteering is a huge plus.",no:"That’s fine! You’ve still got plenty to shine on. Let’s move on to skills."},
+{id:"v1",s:"w",pill:"Volunteering",q:"Where did you volunteer?",tip:"Name the group or event.",f:[{k:"v1",l:"Where",ph:"e.g. Hideout Youth Zone"}],req:1,if:function(){return d.hv=="yes"}},
+{id:"v1h",s:"w",pill:"Volunteering",q:"How long did you do it for?",tip:"Roughly is fine.",f:[{k:"v1h",l:"How long",ph:"e.g. 6 months"}],if:function(){return d.hv=="yes"}},
+{id:"v1d",s:"w",pill:"Volunteering",q:"What did you do?",tip:"Same trick: start with action words, split with commas.",f:[{k:"v1d",l:"Your tasks",ph:"e.g. helped set up events, welcomed new members",ta:1}],live:"duty",if:function(){return d.hv=="yes"}},
+{id:"sk",s:"s",pill:"Skills",q:"Tap the skills that sound like YOU",tip:"Pick 3 to 6. Only choose ones you could give an example of in an interview!",chips:1},
+{id:"end",end:1}
+];
+function vis(){return S.filter(function(s){return !s.if||s.if()})}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function tc(s){s=(s||"").trim();return(s==s.toLowerCase()||s==s.toUpperCase())?s.toLowerCase().replace(/(^|[\s-])([a-z])/g,function(m,a,b){return a+b.toUpperCase()}):s}
+function sent(s){s=s.trim().replace(/\bi\b/g,"I").replace(/\bim\b/gi,"I’m");return s?s[0].toUpperCase()+s.slice(1):""}
+function lst(s){return(s||"").split(/,|\n|;|&|\band\b/i).map(function(x){return x.trim().replace(/^(i am|i’m|i'm|i like|i love|i enjoy|being|an?)\s+/i,"").replace(/[.!]+$/,"")}).filter(Boolean)}
+function jn(a){return a.length<2?(a[0]||""):a.slice(0,-1).join(", ")+" and "+a[a.length-1]}
+function bio(){var pa=lst(d.pa).map(function(x){return x.toLowerCase()}),fr=lst(d.fr).map(function(x){return x.toLowerCase()}),li=lst(d.li).map(function(x){return x.toLowerCase()}),t=[];
+t.push(fr.length?"I’m a "+jn(fr)+" young person"+(pa.length?" with a real passion for "+jn(pa)+".":"."):(pa.length?"I’m a young person with a real passion for "+jn(pa)+".":""));
+if(li.length)t.push("In my spare time I love "+jn(li)+".");
+t.push("I’m keen to learn, work hard and make the most of every opportunity.");return t.join(" ")}
+function duties(s){return(s||"").split(/[\n.;]|,\s/).map(function(x){x=x.trim().replace(/^(i|and)\s+/i,"");return x?x[0].toUpperCase()+x.slice(1):""}).filter(Boolean)}
+function phone(s){var n=(s||"").replace(/[^\d+]/g,"");return/^07\d{9}$/.test(n)?n.slice(0,5)+" "+n.slice(5):s}
+function live(t,v){v=(v||"").trim();if(t=="ph"){var n=v.replace(/\D/g,"");return !v?"":n.length>=10?"👍 Looks like a proper number!":"…keep going, UK mobiles have 11 digits."}
+if(t=="em"){return !v?"":/^\S+@\S+\.\S{2,}$/.test(v)?"👍 That’s a good-looking email!":"Almost – it needs an @ and a dot, like name@email.com"}
+if(t=="len"){var w=v.split(/\s+/).filter(Boolean).length;return !w?"":w<3?"Add a little more – 3 or more words works well.":"🔥 Great detail!"}
+if(t=="duty"){if(!v)return"";return/\b(\w+ed|ran|led|made|built|took|set|helped)\b/i.test(v)?"🔥 Lovely action words!":"Try starting with words like ‘helped’, ‘served’ or ‘organised’."}return""}
+function toast(m){var t=$("#toast");t.textContent=m;t.className="toast show";clearTimeout(toast.t);toast.t=setTimeout(function(){t.className="toast"},1600)}
+function next(){var v=vis(),i=v.findIndex(function(s){return s.id==cur});cur=v[Math.min(i+1,v.length-1)].id;render()}
+function back(){var v=vis(),i=v.findIndex(function(s){return s.id==cur});if(i>0){cur=v[i-1].id;render()}}
+function render(){var v=vis(),i=v.findIndex(function(s){return s.id==cur}),s=v[i];
+$("#bar").style.width=Math.round(i/(v.length-1)*100)+"%";
+$("#count").textContent=(s.welcome||s.end)?"":"Step "+i+" of "+(v.length-2);
+document.documentElement.style.setProperty("--sec",SEC[s.s]||"var(--pink)");
+$("#out").innerHTML="";$("#panel").className="";document.querySelector(".app").classList.remove("wide");
+var h='<section class="card" id="card">';
+if(s.welcome){h+='<span class="pill">Hey there! 👋</span><h1>Let’s build your <span style="color:var(--pink)">first CV</span></h1><div class="coach"><b class="em">😎</b><div>It takes about 5 minutes. One small question at a time, and I’ll give you tips and tidy up your answers as we go. No sign-up and nothing is saved or sent anywhere.</div></div><div class="btns"><button class="go" onclick="next()">Let’s go! 🚀</button></div>'}
+else if(s.end){return finish()}
+else{h+='<span class="pill">'+s.pill+'</span><h2>'+esc(s.q.replace("{fn}",d.fn||"there"))+'</h2><div class="coach"><b class="em">💡</b><div id="tip">'+esc(s.tip)+'</div></div>';
+if(s.yn){h+='<div class="yn"><button class="y" onclick="yn(\''+s.yn+'\',\'yes\')">Yes 👍</button><button class="n" onclick="yn(\''+s.yn+'\',\'no\')">No 👎</button></div>'}
+else if(s.chips){h+='<div class="chips">'+SKILLS.map(function(k,j){return'<button class="chip'+(d.sk.indexOf(k[0])>-1?' on':'')+'" style="animation-delay:'+j*60+'ms" onclick="tog(this,\''+k[0]+'\')">'+k[1]+' '+k[0]+'</button>'}).join("")+'</div><div class="hint" id="hint"></div>'}
+else{h+=(s.f.length>1?'<div class="row">':"")+s.f.map(function(f){var val=esc(d[f.k]||"");return'<div><label for="'+f.k+'">'+f.l+'</label>'+(f.yr?'<select id="'+f.k+'" onchange="d[this.id]=this.value"><option value="">Year</option>'+years.map(function(y){return'<option'+(d[f.k]==y?" selected":"")+'>'+y+'</option>'}).join("")+'</select>':f.ta?'<textarea id="'+f.k+'" placeholder="'+f.ph+'" oninput="inp(this)">'+val+'</textarea>':'<input id="'+f.k+'" type="'+(f.t||"text")+'" placeholder="'+f.ph+'" value="'+val+'" oninput="inp(this)" onkeydown="if(event.key==\'Enter\')go()">')+'</div>'}).join("")+(s.f.length>1?'</div>':"")+'<div class="hint" id="hint"></div>'}
+if(!s.yn){h+='<div class="btns">'+(i>1?'<button class="ghost" onclick="back()">← Back</button>':'')+(!s.req&&!s.chips?'<button class="ghost" onclick="skip()">Skip</button>':'')+'<button class="go" onclick="go()">Next →</button></div>'}
+else{h+='<div class="btns"><button class="ghost" onclick="back()">← Back</button></div>'}}
+$("#panel").innerHTML=h+'</section>';
+var f=$("#card input,#card textarea");if(f&&innerWidth>700)f.focus();if(s.chips)hint()}
+function inp(el){d[el.id]=el.value;var s=S.find(function(x){return x.id==cur});$("#hint").className="hint";$("#hint").textContent=live(s.live,el.value)}
+function yn(k,v){d[k]=v;var s=S.find(function(x){return x.id==cur});$("#tip").textContent=v=="yes"?s.yes:s.no;var b=document.querySelectorAll(".yn button");b.forEach(function(x){x.disabled=true});setTimeout(next,1100)}
+function tog(el,n){var i=d.sk.indexOf(n);if(i>-1){d.sk.splice(i,1)}else if(d.sk.length<6){d.sk.push(n)}else{toast("Max 6 – keep it punchy! 😉");return}el.classList.toggle("on",d.sk.indexOf(n)>-1);hint(n)}
+function hint(n){var h=$("#hint"),c=d.sk.length;h.textContent=(n&&d.sk.indexOf(n)>-1?"✨ "+n+": "+skTips[n]+" ":"")+(c<3?"Pick "+(3-c)+" more to go!":c+" picked – nice!")}
+function skip(){var s=S.find(function(x){return x.id==cur});s.f.forEach(function(f){d[f.k]=""});next()}
+function go(){var s=S.find(function(x){return x.id==cur}),h=$("#hint");
+if(s.chips){if(d.sk.length<1){toast("Tap at least one skill 👆");return}}
+else{for(var j=0;j<s.f.length;j++){var f=s.f[j];if(s.req&&!(d[f.k]||"").trim()){h.className="hint err";h.textContent="Pop something in here first 🙂";return}}
+if(s.live=="em"&&d.em&&!/^\S+@\S+\.\S{2,}$/.test(d.em.trim())){h.className="hint err";h.textContent="That email doesn’t look quite right yet.";return}
+if(s.live=="ph"&&d.ph&&d.ph.replace(/\D/g,"").length<10){h.className="hint err";h.textContent="Phone numbers need at least 10 digits.";return}
+if(s.f.length>1&&d[s.f[0].k]&&d[s.f[1].k]&&+d[s.f[1].k]<+d[s.f[0].k]){h.className="hint err";h.textContent="The finish year can’t be before the start year.";return}
+if(s.id=="fn")d.fn=tc(d.fn);if(s.id=="ln")d.ln=tc(d.ln);if(s.id=="ph")d.ph=phone(d.ph);if(s.id=="em")d.em=(d.em||"").trim().toLowerCase();
+["p1","h1","c1","w1","v1"].forEach(function(k){if(s.id==k)d[k]=tc(d[k])})}
+toast(praise[Math.floor(Math.random()*praise.length)]);next()}
+function yr(a,b){return a?(a+" – "+(b||"Present")):""}
+var ACC=["#ffd600","#ff2e93","#00c8ff","#7b2fff","#1fd37a"],ALLSK=SKILLS.map(function(k){return k[0]});
+var EXS=[
+{lbl:"Alex, 14 · No job yet",fn:"Alex",ln:"Morgan",ph:"07700 900123",em:"alex.morgan@email.com",ad:"Gorton, Manchester M18",acc:"#ff2e93",
+bio:"I’m a friendly, reliable and creative young person with a real passion for drawing and football. In my spare time I love baking and gaming with friends. I’m keen to learn, work hard and make the most of every opportunity.",
+edu:[{a:"Sacred Heart High School",b:"High School",c:"2023",d:""},{a:"St Mary’s Primary School",b:"Primary School",c:"2016",d:"2023"}],
+jobs:[],vols:[{a:"School Open Evening",b:"1 day",c:"Welcomed visitors, Gave guided tours, Handed out leaflets"}],
+sk:["Creative","Teamwork","Responsible"],ex:{ach:"Year 8 Art Prize, School football team",lang:"English, Urdu",hob:""},
+tips:["No job yet? Volunteering and school events show you’re reliable.","Awards and clubs fill the gaps nicely.","One clean page is plenty."]},
+{lbl:"Priya, 16 · First job",fn:"Priya",ln:"Shah",ph:"07700 900456",em:"priya.shah@email.com",ad:"Levenshulme, Manchester M19",acc:"#00c8ff",
+bio:"I’m a hard-working, funny and organised young person with a real passion for music and cooking. In my spare time I love running and spending time with family. I’m keen to learn, work hard and make the most of every opportunity.",
+edu:[{a:"Connell Sixth Form College",b:"BTEC Hospitality",c:"2024",d:""},{a:"Burnage Academy",b:"GCSEs",c:"2019",d:"2024"}],
+jobs:[{a:"Saturday Assistant, Uncle Raj’s Café",b:"8 months",c:"Served 50+ customers a day, Handled cash and card payments, Trained a new starter, Kept the kitchen clean"}],vols:[],
+sk:["Communication","Time Management","Teamwork","Resilient"],ex:{ach:"Food Hygiene Level 2",lang:"English, Gujarati",hob:"Cooking, running, music"},
+tips:["Numbers like “50+ customers a day” make duties stand out.","Every bullet starts with an action word.","Skills match the job you want."]},
+{lbl:"Jordan, 17 · Leader",fn:"Jordan",ln:"Williams",ph:"07700 900789",em:"jordan.w@email.com",ad:"Ardwick, Manchester M12",acc:"#1fd37a",
+bio:"I’m a determined, supportive and motivated young person with a real passion for sport and podcasting. In my spare time I love coaching younger kids and making music. I’m keen to learn, work hard and make the most of every opportunity.",
+edu:[{a:"Manchester College",b:"Level 3 Sport",c:"2025",d:""},{a:"East Manchester Academy",b:"GCSEs",c:"2020",d:"2025"}],
+jobs:[{a:"Paper Round, Local Newsagent",b:"1 year",c:"Delivered 40 papers each morning, Planned the quickest route, Arrived on time every day"}],
+vols:[{a:"Youth Zone Junior Club",b:"1 year",c:"Coached football for 8 to 11 year olds, Helped set up activities, Welcomed new members"}],
+sk:["Good Leader","Responsible","Good Listener","Communication","Resilient"],ex:{ach:"Young Leader of the Month, Duke of Edinburgh Bronze",lang:"English",hob:"Football, podcasting, music production"},
+tips:["Leadership is backed up with real examples.","Awards add proof you can be trusted.","Mixing work and volunteering shows range."]}
+];
+function ul(t){var b=duties(t);return b.length?"<ul>"+b.map(function(l){return"<li>"+esc(l)+"</li>"}).join("")+"</ul>":""}
+function itm(a,b,c){return a?'<div class="item"><b>'+esc(a)+"</b>"+(b?"<small>"+esc(b)+"</small>":"")+ul(c)+"</div>":""}
+function cvHtml(x,id){var cl=["#ff2e93","#ffd600","#00c8ff","#7b2fff","#1fd37a"],h="";
+function sc(t,c,b){return b?'<h3 style="--c:'+c+'">'+t+"</h3>"+b:""}
+var e=x.ex||{};
+h='<article '+(id?'id="cv"':'class="cv"')+'><div class="cvh" style="border-bottom-color:'+x.acc+'"><h1>'+esc(x.fn)+' <em style="color:'+x.acc+'">'+esc(x.ln)+"</em></h1>"+(x.ph?"<p>📞 "+esc(x.ph)+"</p>":"")+(x.em?"<p>✉️ "+esc(x.em)+"</p>":"")+(x.ad?"<p>📍 "+esc(x.ad)+"</p>":"")+'</div><div class="cvb">';
+h+=sc("About Me",cl[0],(x.bio||"").trim()?"<p>"+esc(x.bio)+"</p>":"");
+h+=sc("Education",cl[2],x.edu.map(function(o){return itm(o.a,(o.b||"")+(o.c?(o.b?" • ":"")+yr(o.c,o.d):""))}).join(""));
+h+=sc("Work Experience",cl[1],x.jobs.map(function(o){return itm(o.a,o.b,o.c)}).join(""));
+h+=sc("Volunteering",cl[3],x.vols.map(function(o){return itm(o.a,o.b,o.c)}).join(""));
+h+=sc("Skills",cl[4],x.sk.length?'<div class="sk">'+x.sk.map(function(k,i){return'<span style="--c:'+cl[i%5]+'">'+esc(k)+"</span>"}).join("")+"</div>":"");
+h+=sc("Achievements & Awards",cl[1],(e.ach||"").trim()?ul(e.ach):"");
+h+=sc("Languages",cl[2],(e.lang||"").trim()?"<p>"+esc(e.lang)+"</p>":"");
+h+=sc("Hobbies & Interests",cl[3],(e.hob||"").trim()?"<p>"+esc(e.hob)+"</p>":"");
+return h+sc("References",cl[0],"<p>Available on request.</p>")+"</div></article>"}
+var DEF={edu:[["a","School or college","e.g. Connell Sixth Form"],["b","What you studied (optional)","e.g. GCSEs, BTEC"],["c","Start year","2021"],["d","Finish year (blank = present)","2026"]],
+job:[["a","Where / job title","e.g. Café helper at Uncle Sam’s"],["b","How long","e.g. 3 months"],["c","What you did (commas or new lines)","e.g. served customers, cleaned tables",1]]};
+function fi(k,i,f,l,ph,ta,v){var a='oninput="L(\''+k+"',"+i+",'"+f+'\',this.value)" placeholder="'+esc(ph)+'"';return"<label>"+l+"</label>"+(ta?"<textarea "+a+">"+esc(v)+"</textarea>":"<input "+a+' value="'+esc(v)+'">')}
+function lst2(k,m,t){return d[k].map(function(o,i){return'<div class="li"><button class="x" onclick="delI(\''+k+"',"+i+')" aria-label="Remove">✕</button>'+m.map(function(f){return fi(k,i,f[0],f[1],f[2],f[3],o[f[0]])}).join("")+"</div>"}).join("")+'<button class="ghost add" onclick="addI(\''+k+"')\">＋ "+t+"</button>"}
+function sec(t,tip,b,c){return'<div class="fs" style="--c:'+c+'"><h4>'+t+'</h4><p class="ft">💡 '+tip+"</p>"+b+"</div>"}
+function bf(k,l,ph){return"<label>"+l+'</label><input value="'+esc(d[k])+'" placeholder="'+ph+'" oninput="d.'+k+'=this.value;pv()">'}
+function xf(k,l,ph){return"<label>"+l+'</label><textarea placeholder="'+ph+'" oninput="d.ex.'+k+'=this.value;pv()">'+esc(d.ex[k])+"</textarea>"}
+function addI(k){d[k].push(k=="edu"?{a:"",b:"",c:"",d:""}:{a:"",b:"",c:""});form();pv()}
+function delI(k,i){d[k].splice(i,1);form();pv()}
+function L(k,i,f,v){d[k][i][f]=v;pv()}
+function tog2(el){var n=el.dataset.n,i=d.sk.indexOf(n);i>-1?d.sk.splice(i,1):d.sk.push(n);el.classList.toggle("on",i<0);pv()}
+function addSk(){var v=tc($("#cs").value);if(v&&d.sk.indexOf(v)<0)d.sk.push(v);form();pv()}
+function setAcc(c){d.acc=c;form();pv()}
+function form(){var all=ALLSK.concat(d.sk.filter(function(s){return ALLSK.indexOf(s)<0}));
+$("#form").innerHTML='<div class="coach"><b class="em">🎉</b><div><b>Your CV is ready!</b> Everything updates live on the right. Add more detail in any box, or try the Examples tab to see how others do it.</div></div>'+
+sec("Contact","Double-check every digit and letter. One typo and they can’t reach you!",bf("fn","First name","")+bf("ln","Last name","")+bf("ph","Phone","07123 456789")+bf("em","Email","name@email.com")+bf("ad","Town and postcode",""),"var(--pink)")+
+sec("About me","Aim for 2 to 4 sentences. Make it sound like you, then edit freely.",'<textarea style="min-height:120px" oninput="d.bio=this.value;pv()">'+esc(d.bio)+'</textarea>',"var(--yellow)")+
+sec("Education","List newest first. Add GCSE subjects or predicted grades if you’re proud of them.",lst2("edu",DEF.edu,"Add a school or course"),"var(--cyan)")+
+sec("Work experience","Use numbers where you can, like “served 30 customers a day”.",lst2("jobs",DEF.job,"Add a job or placement"),"var(--yellow)")+
+sec("Volunteering","Helping out at school, clubs or in your community all counts.",lst2("vols",DEF.job,"Add volunteering"),"var(--purple)")+
+sec("Skills","Tap to add or remove. Only keep ones you could back up with a story.",'<div class="chips">'+all.map(function(n){return'<button class="chip'+(d.sk.indexOf(n)>-1?" on":"")+'" data-n="'+esc(n)+'" onclick="tog2(this)">'+esc(n)+"</button>"}).join("")+'</div><label>Add your own</label><div class="row"><input id="cs" placeholder="e.g. Football coaching" onkeydown="if(event.key==\'Enter\')addSk()"><button class="ghost" onclick="addSk()">＋ Add</button></div>',"var(--green)")+
+sec("Extras","Optional, but they make you look well-rounded.",xf("ach","Achievements & awards","e.g. Year 9 Sports Award, Duke of Edinburgh Bronze")+xf("lang","Languages","e.g. English, Polish")+xf("hob","Hobbies & interests","e.g. boxing, photography, cooking"),"var(--pink)")+
+sec("Colour","Pick the accent colour for your CV.",'<div class="sw">'+ACC.map(function(c){return'<button style="background:'+c+'" class="'+(d.acc==c?"on":"")+'" onclick="setAcc(\''+c+'\')" aria-label="Colour"></button>'}).join("")+"</div>","var(--cyan)")}
+function exs(){$("#exs").innerHTML='<div class="coach"><b class="em">👀</b><div>Three made-up CVs from different starting points. Notice what each does well, then borrow the ideas!</div></div>'+EXS.map(function(x){return'<div class="exw"><h4>'+x.lbl+'</h4><div class="exc">'+cvHtml(x,0)+'</div><div class="coach"><b class="em">⭐</b><div><b>Why it works</b><ul>'+x.tips.map(function(t){return"<li>"+t+"</li>"}).join("")+"</ul></div></div></div>"}).join("")}
+function pv(){$("#cvbox").innerHTML=cvHtml(d,1)}
+function tab(t){$("#ed").dataset.t=t;document.querySelectorAll(".tabs button").forEach(function(b){b.classList.toggle("on",b.dataset.b==t)});scrollTo({top:0,behavior:"smooth"})}
+function finish(){var c=["#ff2e93","#ffd600","#00c8ff","#7b2fff","#1fd37a"];
+if(!d.mig){d.mig=1;d.acc=ACC[0];d.bio=bio();d.ex={ach:"",lang:"",hob:""};
+d.edu=[["Primary School","p1","p1s","p1e"],["High School","h1","h1s","h1e"],["College","c1","c1s","c1e"]].filter(function(x){return d[x[1]]}).map(function(x){return{a:d[x[1]],b:x[0],c:d[x[2]]||"",d:d[x[3]]||""}});
+d.jobs=d.hw=="yes"&&d.w1?[{a:d.w1,b:d.w1h||"",c:d.w1d||""}]:[];d.vols=d.hv=="yes"&&d.v1?[{a:d.v1,b:d.v1h||"",c:d.v1d||""}]:[];
+for(var i=0;i<60;i++){var e=document.createElement("i");e.className="conf";e.style.left=Math.random()*100+"vw";e.style.background=c[i%5];e.style.animationDuration=2+Math.random()*2.5+"s";e.style.animationDelay=Math.random()*.6+"s";document.body.appendChild(e);setTimeout(function(x){x.remove()},5500,e)}}
+document.querySelector(".app").classList.add("wide");$("#panel").innerHTML="";$("#bar").style.width="100%";$("#count").textContent="Editing ✏️";
+$("#out").innerHTML='<div class="ed" id="ed" data-t="edit"><div class="tabs"><button class="on" data-b="edit" onclick="tab(\'edit\')">✏️ Edit</button><button data-b="prev" onclick="tab(\'prev\')">📄 My CV</button><button data-b="ex" onclick="tab(\'ex\')">👀 Examples</button></div><div class="pe" id="form"></div><div class="px" id="exs"></div><div class="pv"><div class="btns noprint" style="margin:0 0 4px"><button class="go" onclick="window.print()">🖨️ Print / Save as PDF</button><button class="ghost" onclick="d={sk:[]};cur=\'start\';render()">Start over</button></div><div id="cvbox"></div></div></div>';
+form();exs();pv();toast("Your CV is ready, edit anything! ✏️")}
+render();
+</script>
+</body>
+</html>
